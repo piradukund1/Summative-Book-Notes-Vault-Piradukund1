@@ -127,7 +127,80 @@ textarea:focus-visible {
     background: #f0f5ef;
     color: var(--green);
 }
-/*  vkvfjinndv
-fvjnfdnvn fnjvnfjnv fnjnvfnjfvjnv fdnjvfjnvf fnjnf njnvf ooedoorfrmkmdc dkmskfokoefoeopdlpkforkfkr fvkmkmv kmkmvf
-vnfvnjfvnjnfvoworksmdoc sdwoepfr sdmkorfkr ndkmforf mforvmvk vdmkmoskfkro vsdvmovmovm vdsvokokv vsmvokpov svojmr
-svmklmsmvfv vnvkmdvnmonvd dvnonvkndvknskvn kvnnokvnonv knvvnnv vnponv vovnkvnnv nvovnov nsdnvopsnvkfonnv fnklv */
+.sidebar-note>span {
+    font-size: 8px 0 0;
+    font-size: .82rem;
+    color: #68756e;
+}
+.sidebar-note-strong {
+    color: var(--green-dark);
+}
+.page-shell {
+    max-width: 1180px;
+    margin: 0 auto 0 246px;
+    padding: 26px 28px 60px;
+}
+.hero {
+    min-height: 300px;
+    padding: 42px 48px;
+    background: var(--green);
+    color: white;
+    border-radius: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+.hero>div:first-child {
+    max-width: 590px;
+    z-index: 1;
+}
+.eyebrow {
+    color: #7e9b87;
+    font-size: .73rem;
+    font-weight: 800;
+    letter-spacing: .13em;
+    margin: 0 0 8px;
+}
+.hero .eyebrow {
+    color: #c1d8c5;
+}
+h1, h2, h3, p {
+    margin-top: 0;
+}
+h1, h2 ,h3 {
+    font-family: Manrope, "DM sans", sans-serif;
+    line-height: 1.2;
+}
+h1 {
+    font-size: clamp(2.1rem, 4vw, 3.4rem);
+    letter-spacing: -.04em;
+    margin-bottom: 14px;
+}
+.hero-copy {
+    max-width: 520px;
+    color: #e1eee5;
+    margin-bottom: 24px;
+    font-size: 1.04rem;
+}
+.button{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 1px solid var(--green);
+    border-radius: 10px;
+    padding: 10px 15px;
+    background: var(--green);
+    color: white;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform .18 ease, background .18s ease, box-shadow .18s ease;
+}
+.button:hover {
+    background: var(--green-dark);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 5px 13px #193e2c24;
+}
