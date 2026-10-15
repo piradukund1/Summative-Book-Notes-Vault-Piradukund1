@@ -77,7 +77,36 @@
                     <p class="stat-help">Records from the last 7 days</p>
                 </article>
             </div>
-            
+            <div class="dashboard-bottom">
+                <article class="panel trend-panel">
+                    <div class="panel-heading">
+                        <div>
+                            <h3>Last 7 days</h3>
+                            <p class="muted">New books and notes added each day</p>
+                        </div>
+                    </div>
+                    <div id="weekly-chart" class="weekly-chart" role="img"
+                        aria-label="chart showing records added over the last seven days"></div>
+                </article>
+                <article class="panel taget-panel">
+                    <h3>page target</h3>
+                    <p class="muted">Set a page target to track your library growth.</p>
+                    <form id="target-form" class="target-form">
+                        <label for="page-target">Target pages</label>
+                        <div class="inline-fields">
+                            <input id="page-target" name="pageTarget" type="number" min="0" step="1" value="1000"
+                                required>
+                            <button class="button" type="submit">Save target</button>
+                        </div>
+                    </form>
+                    <p id="target-message" class="status-message" role="status" aria-live="polite">Add books to start
+                        tracking your target.</p>
+                    <div class="progress-track" aria-hidden="true">
+                        <div id="target-progress" class="progress-fill"></div>
+                    </div>
+                </article>
+            </div>
+
 
         </section>
 
