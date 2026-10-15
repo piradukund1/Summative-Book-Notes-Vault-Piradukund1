@@ -106,9 +106,62 @@
                     </div>
                 </article>
             </div>
+        </section>
 
+        <section id="add-record" class="section-block" aria-labelledby="form-title">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">GROW YOUR COLLECTION</p>
+                    <h2 id="form-title">Add a book or note</h2>
+                </div>
+                <P class="muted">Fiels market * are required.</P>
+            </div>
+            <div class="panel form-panel">
+                <form id="record-form" novalidate>
+                    <input type="hidden" id="record-id" name="recordId">
+                    <div class="form-grid">
+                        <div class="field field-wide">
+                            <label for="title">Book or note title</label>
+                            <input type="text" id="title" name="title" maxlength="120"
+                                placeholder="e.g Introduction to Robotics" required aria-describedby="title-error">
+                            <small class="field-error" id="title-error"></small>
+                        </div>
+                        <div class="field">
+                            <label for="author">Arthor</label>
+                            <input type="text" name="author" id="author" maxlength="100" placeholder="e.g Phil tough"
+                                required aria-describedby="author-error">
+                            <small class="field-error" id="author-error"></small>
+                        </div>
+                        <div class="field">
+                            <label for="tag">Tag</label>
+                            <input type="text" id="tag" name="tag" maxlength="40" placeholder="e.g Techology" required
+                                aria-describedby="pages-error">
+                            <small class="field-error" id="date-error"></small>
+                        </div>
+                        <div class="field">
+                            <label for="date-added">Date added</label>
+                            <input type="date" name="dateAdded" id="date-added" required aria-describedby="date-error">
+                            <small class="field-error" id="date-error"></small>
+                        </div>
+                        <div class="field field-wide">
+                            <label for="notes">Notes / summary</label>
+                            <textarea id="notes" name="notes" rows="3" maxlength="1000"
+                                placeholder="What is this book about? Add a reminder or short summary."></textarea>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button class="button" id="save-record" type="submit">Save to vault</button>
+                        <button class="button button-secondary" id="cancel-edit" type="button" hidden>Cancel
+                            edit</button>
+                        <button class="text-button" id="clear-form" type="button">Clear form</button>
+                    </div>
+                    <p id="form-status" class="status-message" role="status" aria-live="polite"></p>
+                </form>
+            </div>
 
         </section>
+
+
 
 
 
