@@ -160,42 +160,132 @@
                     <p id="form-status" class="status-message" role="status" aria-live="polite"></p>
                 </form>
             </div>
-
         </section>
 
+        <section id="records" class="section-block" aria-labelledby="records-title">
+            <div class="section-heading library-heading">
+                <div>
+                    <p class="eyebrow">YOUR COLLECTION</p>
+                    <h2 id="records-title">My library</h2>
+                    <p class="muted">Search with words or regular expressions, then sort your results.</p>
+                </div>
+                <div class="library-actions">
+                    <button class="button button-secondary" id="export-json" type="button">Export JSON</button>
+                    <button class="button button-secondary" id="import-trigger" type="button">Import JSON</button>
+                    <input id="import-file" type="file" accept=".json,application/json" hidden>
+                </div>
+            </div>
+            <div class="panel library-panel">
+                <div class="search-tools">
+                    <div class="field search-field">
+                        <label for="search-pattern">Search pattern</label>
+                        <input id="search-pattern" type="search" placeholder="Try: robotics or ^Intro"
+                            aria-describedby="search-help search-error">
+                        <small id="search-help" class="field-hint">Regular expressions are supported. Leave blank to
+                            show
+                            everything.</small>
+                        <small id="search-error" class="field-error" role="status"></small>
+                    </div>
+                    <label class="check-label" for="case-insensitive">
+                        <input id="case-insensitive" type="checkbox" checked>
+                        Ignore letter case
+                    </label>
+                    <div class="field sort-field">
+                        <label for="sort-by">Sort by</label>
+                        <select id="sort-by">
+                            <option value="date-desc">Date added (newest)</option>
+                            <option value="date-asc">Date added (oldest)</option>
+                            <option value="title-asc">Title (A–Z)</option>
+                            <option value="title-desc">Title (Z–A)</option>
+                            <option value="pages-desc">Pages (high to low)</option>
+                            <option value="pages-asc">Pages (low to high)</option>
+                        </select>
+                    </div>
+                </div>
+                <p id="results-count" class="results-count" aria-live="polite">Showing 0 records</p>
+                <div class="table-wrap">
+                    <table>
+                        <caption class="visually-hidden">Books and notes saved in your vault</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Title / Author</th>
+                                <th scope="col">Pages</th>
+                                <th scope="col">Tag</th>
+                                <th scope="col">Date added</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="records-body"></tbody>
+                    </table>
+                </div>
+                <div id="empty-state" class="empty-state" hidden>
+                    <div class="empty-icon" aria-hidden="true">▤</div>
+                    <h3>No matching books yet</h3>
+                    <p>Add your first book or change your search pattern.</p>
+                    <a class="button" href="add-book.html">Add a book</a>
+                </div>
+            </div>
+        </section>
 
+        <section id="settings" class="section-block" aria-labelledby="settings-title">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">MAKE IT YOURS</p>
+                    <h2 id="settings-title">Settings &amp; data</h2>
+                </div>
+            </div>
+            <div class="settings-grid">
+                <article class="panel settings-card">
+                    <h3>Display preferences</h3>
+                    <p class="muted">Choose how page totals are displayed.</p>
+                    <label for="page-unit">Page display</label>
+                    <select id="page-unit">
+                        <option value="pages">Pages</option>
+                        <option value="sheets">Approximate sheets (2 pages = 1 sheet)</option>
+                        <option value="thousands">Thousands of pages</option>
+                    </select>
+                    <p id="unit-preview" class="status-message" aria-live="polite">Totals are shown in pages.</p>
+                </article>
+                <article class="panel settings-card">
+                    <h3>Backup &amp; restore</h3>
+                    <p class="muted">Export a JSON backup before changing devices. Import validates records before
+                        replacing your
+                        current library.</p>
+                    <button class="button button-secondary" id="export-settings" type="button">Download backup</button>
+                    <button class="button button-danger-outline" id="clear-library" type="button">Delete all
+                        records</button>
+                    <p id="settings-status" class="status-message" role="status" aria-live="polite"></p>
+                </article>
+            </div>
+        </section>
 
+        <section id="about" class="section-block" aria-labelledby="about-title">
+            <div class="about-panel">
+                <div>
+                    <p class="eyebrow">ABOUT THIS PROJECT</p>
+                    <h2 id="about-title">A little home for big ideas.</h2>
+                    <p>Book &amp; Notes Vault is a beginner-friendly library app built with semantic HTML, responsive
+                        CSS and
+                         JavaScript. It helps students keep track of books, notes, page counts and reading ideas.
+                    </p>
+                </div>
+                <div class="contact-card">
+                    <h3>Contact the developer</h3>
+                    <p><strong>GitHub:</strong> <a href="https://github.com/piradukund1" target="_blank"
+                            rel="noreferrer">piradukund1</a></p>
+                    <p><strong>Email:</strong> <a href="mailto:your.email@example.com">p.iradukund1@alustudent.com</a></p>
+                    
+                </div>
+            </div>
+        </section>
+    </main>
 
+    <footer class="site-footer">
+        <p>© <span id="current-year"></span> Book &amp; Notes Vault · Made for curious minds.</p>
+        <a href="#main">Back to top ↑</a>
+    </footer>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <div id="global-status" class="visually-hidden" role="status" aria-live="polite"></div>
 
     </main>
 
