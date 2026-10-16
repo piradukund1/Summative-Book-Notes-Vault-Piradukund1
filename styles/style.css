@@ -333,6 +333,12 @@ h1 {
     transform: rotate(-13deg);
 }
 
+.book-two{
+   left: 180px;
+    background: #e2dad0;
+    transform: rotate(-40deg); 
+}
+
 .book-three {
     left: 170px;
     background: #c46f55;
