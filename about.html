@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Book & notes vault">
+        <title>Book & Notes</title>
+        <link rel="stylesheet" href="styles/style.css">
+        <script type="module" src="scripts/app.js"></script>
+    </head>
+    <body data-page="about">
+        <a href="#main" class="skip-link">Skip to main content</a>
+
+        <aside class="sidebar" aria-label="Sidebar">
+            <a href="index.html" class="brand" aria-label="Book and Notes Vault home">
+                <span class="brand-icon" aria-hidden="true">▣</span>
+                <span>Book &amp; Notes <strong>Vault</strong></span>
+            </a>
+            <p class="sidebar-label">WORKSPACE</p>
+            <nav aria-label="Main navigation">
+                <a href="index.html"><span aria-hidden="true">▦</span> Dashboard</a>
+                <a href="library.html"><span aria-hidden="true">▤</span> My Library</a>
+                <a href="add-book.html"><span aria-hidden="true">＋</span> Add Book</a>
+                <a href="settings.html"><span aria-hidden="true">⚙</span> Settings</a>
+                <a href="about.html"><span aria-hidden="true">ⓘ</span> About</a>
+            </nav>
+            <div class="sidebar-note">
+                <p><strong>Keep learning.</strong><br>One page at a time.</p>
+            </div>
+        </aside>
+
+        <main id="main" class="page-shell">
+            <section class="hero" aria-labelledby="hero-title">
+                <div>
+                    <p class="eyebrow">YOUR PERSONAL READING SPACE</p>
+                    <h1 id="hero-title">Every book has a place.</h1>
+                    <p class="hero-copy">Keep your books, notes, page counts and reading ideas organized in one simple vault.</p>
+                    <a href="add-book.html" class="button button-light">+ Add a book</a>
+                </div>
+                <div class="hero-art" aria-hidden="true">
+                    <div class="book book-one"></div>
+                    <div class="book book-two"></div>
+                    <div class="book book-three"></div>
+                </div>
+            </section>
+
+            <section id="dashboard" class="section-block" aria-labelledby="dashboard-title">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">AT A GLANCE</p>
+                        <h2 id="dashboard-title">Your reading dashboard</h2>
+                    </div>
+                    <p class="muted">Your changes save authomatically on this device.</p>
+                </div>
+                <div class="stats-grid">
+                    <article class="stat-card">
+                        <span class="stat-icon" aria-hidden="true">▤</span>
+                        <p class="stat-label">Books &amp; notes</p>
+                        <p class="stat-value" id="total-pages">0</p>
+                        <p class="stat-help">Total saved records</p>
+                    </article>
+                    <article class="stat-card">
+                        <span class="stat-icon" aria-hidden="true">▥</span>
+                        <p class="stat-label">Total pages</p>
+                        <p class="stat-value" id="total-pages">0</p>
+                        <p class="stat-help">Pages across your vault</p>
+                    </article>
+                    <article class="stat-card">
+                        <p class="stat-label">Top tag</p>
+                        <p class="stat-value stat-word" id="top-tag">-</p>
+                        <p class="stat-help">Your most used category</p>
+                    </article>
+                    <article class="stat-card">
+                        <span class="stat-icon" aria-hidden="true">↗</span>
+                        <p class="stat-label">Added this week</p>
+                        <p class="stat-value" id="recent-records">0</p>
+                        <p class="stat-help">Records from the last 7 days</p>
+                    </article>
+                </div>
+                <div class="dashboard-botton">
+                    <article class="panel trend-panel">
+                        <div class="panel-heading">
+                            <div>
+                                <h3>Last 7 days</h3>
+                                <p class="muted">New books and notes added each day</p>
+                            </div>
+                        </div>
+                        <div id="weekly-chart" class="weekly-chart" role="img" aria-label="Chart showing records added over the last seven days"></div>
+                    </article>
+                    <article class="panel target-panel">
+                        <h3>Page target</h3>
+                        <p class="muted">Set a page target to track your library growth.</p>
+                        <form id="target-form" class="target-form">
+                            <label for="page-target">Target pages</label>
+                            <div class="inline-fields">
+                                <input type="number" name="pageTarget" id="page-target" step="1" value="1000" required>
+                                <button class="button" type="submit">Save target</button>
+                            </div>
+                        </form>
+                        <p id="target-message" class="status-message" role="status" aria-live="polite">Add books to start tracking your target.</p>
+                        <div class="progress-track" aria-hidden="true"><div id="target-progress" class="progress-fill"></div></div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="section-block" id="add-record" aria-labelledby="form-title">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">GROW YOUR COLLECTION</p>
+                        <h2 id="form-title">Add a book or note</h2>
+                    </div>
+                    <p class="muted">Field marked * are required</p>
+                </div>
+                <div class="panel form-panel">
+                    <form id="record-form" novalidate>
+                        <input type="hidden" id="record-id" name="recordId">
+                        
+                    </form>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>
