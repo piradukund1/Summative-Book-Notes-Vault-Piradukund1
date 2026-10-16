@@ -130,17 +130,20 @@
                         </div>
                         <div class="field">
                             <label for="author">Author</label>
-                            <input type="text" id="author" name="author" maxlength="100" placeholder="phil the one and only">
+                            <input type="text" id="author" name="author" maxlength="100"
+                                placeholder="phil the one and only">
                             <small class="field-error" id="pages-error"></small>
                         </div>
                         <div class="field">
                             <label for="pages">Number of pages</label>
-                            <input type="number" name="pages" id="pages" min="40" max="100000" step="1" placeholder="e.g 767" required aria-describedby="pages-error">
+                            <input type="number" name="pages" id="pages" min="40" max="100000" step="1"
+                                placeholder="e.g 767" required aria-describedby="pages-error">
                             <small class="field-error" id="pages-error"></small>
                         </div>
                         <div class="field">
                             <label for="tag">Tag</label>
-                            <input type="text" id="tag" name="tag" maxlength="40" placeholder="e.g tech" required aria-describedby="tag-error">
+                            <input type="text" id="tag" name="tag" maxlength="40" placeholder="e.g tech" required
+                                aria-describedby="tag-error">
                             <small class="field-error" id="tag-error"></small>
                         </div>
                         <div class="field">
@@ -150,11 +153,107 @@
                         </div>
                         <div class="field field-wide">
                             <label for="notes">Notes / summary</label>
-                            <textarea name="notes" id="notes" rows="3" maxlength="1000" placeholder="what is this book about? add a reminder or short summary"></textarea>
+                            <textarea name="notes" id="notes" rows="3" maxlength="1000"
+                                placeholder="what is this book about? add a reminder or short summary"></textarea>
                         </div>
                     </div>
-
+                    <div class="form-actions">
+                        <button class="button" id="save-record" type="submit">Save to vault</button>
+                        <button class="button button-secondary" id="cancel-edit" type="button" hidden>Cancel
+                            edit</button>
+                        <button class="text-button" id="clear-form" type="button">Clear form</button>
+                    </div>
+                    <p id="form-status" class="status-message" role="status" aria-live="polite"></p>
                 </form>
+            </div>
+        </section>
+        <section id="records" class="section-block" aria-labelledby="records-title">
+            <div class="section-heading library-heading">
+                <div>
+                    <p class="eyebrow">YOUR COLLECTION</p>
+                    <h2 id="records-title">My library</h2>
+                    <p class="muted">Search with words or regular expressions, then sort your results.</p>
+                </div>
+                <div class="library-actions">
+                    <button class="button button-secondary" id="export-json" type="button">Export JSON</button>
+                    <button class="button button-secondary" id="import-trigger" type="button">Import JSON</button>
+                    <input type="file" id="import-file" accept=".json,application/json" hidden>
+                </div>
+            </div>
+            <div class="panel library-panel">
+                <div class="search-tools">
+                    <div class="field search-field">
+                        <label for="search-pattern">Search pattern</label>
+                        <input type="search" id="search-pattern" placeholder="Search here..."
+                            aria-describedby="seach-help search-error">
+                        <small id="search-help" class="field-hint">Regular expressions are supported. Leave blank to
+                            show everything.</small>
+                        <small id="search-error" class="field-error" role="status"></small>
+                    </div>
+                    <label class="check-label" for="case-insensitive">
+                        <input id="case-insensitive" type="checkbox" checked>
+                        Ignore letter case
+                    </label>
+                    <div class="field sort-field">
+                        <label for="sort-by">Sort by</label>
+                        <select id="sort-by">
+                            <option value="date-desc">Date added (newest)</option>
+                            <option value="date-asc">Date added (oldest)</option>
+                            <option value="title-asc">Title (A - Z)</option>
+                            <option value="title-desc">Title (Z - A)</option>
+                            <option value="pages-desc">Pages (high to low)</option>
+                            <option value="pages-asc">Pages (low to high)</option>
+                        </select>
+                    </div>
+                </div>
+                <p id="results-count" class="results-count" aria-live="polite">Showing 0 record</p>
+                <div class="table-wrap">
+                    <table>
+                        <caption class="visually-hidden">Books and notes saved in your vault</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Title / Author</th>
+                                <th scope="col">Pages</th>
+                                <th scope="col">Tag</th>
+                                <th scope="col">Date added</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="records-body"></tbody>
+                    </table>
+                </div>
+                <div id="empty-state" class="empty-state" hidden>
+                    <div class="empty-icon" aria-hidden="true">▤</div>
+                    <h3>No matching books yet</h3>
+                    <p>Add your first book or change your search pattern.</p>
+                    <a class="button" href="add-book.html">Add a book</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="settings" class="section-block" aria-labelledby="settings-title">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">MAKE IT YOURS BRO</p>
+                    <h2 id="settings-title">Settings &amp; data</h2>
+                </div>
+            </div>
+            <div class="settings-grid">
+                <article class="panel settings-card">
+                    <h3>Display preferences</h3>
+                    <p class="muted">Choose how page total are displayed.</p>
+                    <label for="page-unit">Page display</label>
+                    <select id="page-unit">
+                        <option value="pages">Pages</option>
+                        <option value="sheets">Approximate sheets (2 pages = 1sheet)</option>
+                        <option value="thousands">Thousands of pages</option>
+                    </select>
+                    <p id="unit-preview" class="status-message" aria-live="polite">Totala are shown in pages.</p>
+                </article>
+                <article class="panel settings-card">
+                    <h3>Backup &amp; restore</h3>
+                    <p class="muted">Export a JSON backup before changing devices. import validates records before replacing t </p>
+                </article>
             </div>
         </section>
     </main>
