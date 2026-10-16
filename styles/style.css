@@ -1,4 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+
 :root{
+    --ink: #202b27;
+    
+    
+
+
+
 
 }
 *{
@@ -203,4 +211,71 @@ h1 {
     color: white;
     transform: translateY(-1px);
     box-shadow: 0 5px 13px #193e2c24;
+}
+.button-light {
+    background: white;
+    color: var(--green-dark);
+    border-color: white;
+}
+.button-light:hover {
+    background: #f1f5ef;
+    color: var(--green-dark);
+}
+.button-secondary {
+    background: white;
+    color: var(--green-dark);
+    border-color: #cbd9ce;
+}
+.button-secondary {
+    background: white;
+    color: var(--green);
+    border-color: #cbd9ce;
+
+}
+.button-secondary:hover {
+    background: var(--green-soft);
+    color: var(--green-dark);
+}
+.button-danger-outline {
+    background: white;
+    border: 1px solid #e8b9bd;
+    color: var(--danger);
+    margin-left: 8px;
+}
+.button-danger-outline:hover {
+    color: white;
+    background: var(--danger);
+}
+.hero-art {
+    width: 300px;
+    height: 220px;
+    position: relative;
+    flex: 0 0 300px;
+    margin-right: 22px;
+}
+.book {
+    position: absolute;
+    bottom: 18px;
+    height: 155px;
+    width: 84px;
+    border-radius: 7px 12px 12px 7px;
+    box-shadow: inset 7px 0 0 #ffffff20, 8px 14px 18px #102e2138;
+    transform-origin: bottom center;
+}
+.book::after {
+    content: "";
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    right: 2px;
+    background: #ffffff90;
+    box-shadow: 0 8px 0 #ffffff55, 0 16px 0 #ffffff55;
+}
+.book-one {
+    left: 38px;
+    background: #d9a35d;
+    transform: rotate(-13deg);
+}
+.book-three {
+    
 }

@@ -2,24 +2,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="styles/style.css">
-    <script type="module" src="tests/tests.js"></script>
+    <meta http-equiv="refresh" content="0; url=index.html?page=about">
+    <title>About | Book and note vault</title>
+    <script>window.location.replace("index.html?page=about" + window.location.search.replace(/^\?/, "&"));</script>
 </head>
 <body>
-    <a href="#main" class="skip-link">Skip to main content</a>
-    <main id="main" class="page-shell">
-        <section class="section-block">
-            <p class="eyebrow">DEVELOPER TOOLS</p>
-            <h1>Validation tests</h1>
-            <p class="muted">Small browser tests for the project's regex validation and search compiler.</p>
-            <div class="panel">
-                <p id="test-summary" role="status" aria-live="polite">Running tests...</p>
-                <ul id="test-results"></ul>
-                <p><a href="index.html" class="button">Return to Book &amp; Notes Vault</a></p>
-            </div>
-        </section>
-    </main>
-    
+    <p>Opening About... <a href="index.html?page=about">Continue</a></p>
 </body>
 </html>
