@@ -1,8 +1,8 @@
 // DOM rendering functions
 import { appendHighlightedText } from "./search";
 
-export function renderRecords(records, pattern, ignoreCase, element, handlers) {
-    const body = element.body;
+export function renderRecords(records, pattern, ignoreCase, elements, handlers) {
+    const body = elements.body;
     body.replaceChildren();
 
     for  (const record of records) {
@@ -38,8 +38,81 @@ export function renderRecords(records, pattern, ignoreCase, element, handlers) {
         const actionsCells = document.createElement("td");
         const actions = document.createElement("div");
         actions.className = "row-actions";
-        
+        const editButton = document.createElement("button");
+        editButton.type = "button";
+        editButton.className = "small-button";
+        editButton.textContent = "Edit";
+        editButton.setAttribute("aria-label", `Edit ${record.title}`);
+        editButton.addEventListener("click", () => handlers.edit(record.id));
+        const deleteButton = document.createElement("button");
+        deleteButton.type = "button";
+        deleteButton.className = "small-button delete";
+        deleteButton.textContent = "delete";
+        deleteButton.setAttribute("aria-label", `Delete ${record.title}`);
+        deleteButton.addEventListener("click", () => handlers.delete(record.id));
+        actions.append(editButton, deleteButton);
+        actionsCells.append(actions);
 
-
+        row.append(titleCell, pagesCell, tagCell, dateCell, actionsCells);
+        body.append(row);
     }
+
+    elements.empty.hidden = records.length !== 0;
+    elements.count.textContent = `Showing ${records.length} record${records.length === 1 ? "" : "s"}`;
+}
+
+export function renderStats(records, settings, elements) {
+    const totalPages = records.reduce((sum, record) => sum + Number(record.pages), 0);
+    elements.totalRecords.textContent = records.length.toLocaleString();
+
+    let shownTotal = totalPages;
+    let unitName = "pages";
+    if (settings.pagesUnit === "sheets") {
+        shownTotal = totalPages / 2;
+        unitName = "approx. sheets";
+    } else if (settings.pagesUnit === "thousands") {
+        shownTotal = totalPages / 1000;
+        unitName = "thousand pages";
+    }
+    elements.totalPages.textContent = Number(shownTotal.toFixed(2)).toLocaleString();
+    elements.totalPages.nextElementSibling.textContent = `Total ${unitName} across your vault`;
+    elements.uniPreview.textContent = `Display: ${unitName}. Raw page target always uses pages.`;
+
+    const tagCounts = {};
+    records.forEach(record => {
+        tagCounts[record.tag] = (tagCounts[record.tag] || 0) + 1; 
+    });
+    const topTag = Object.entries(tagCounts).sort((a, b) => b[1] - a[1])[0];
+    elements.topTag.textContent = topTag ? topTag[0] : "_";
+
+    const today = new Date();
+    today.setHours(23, 59, 59, 999);
+    const weekAgo = new Date(today);
+    weekAgo.setDate(weekAgo.getDate() - 6);
+    const recent = records.filter(record => {
+        const date = new Date(`${record.dateAdded}T00:00:00`);
+        return date >= weekAgo && date <= today;
+    });
+    elements.recentRecords.textContent = recent.length.toLocaleString();
+
+    const dayLabels = [];
+    for (let i = 6; i >= 0; i--) {
+        const day = new Date();
+        day.setHours(0, 0, 0, 0);
+        day.setDate(day.getDate() - i);
+        const key = `${day.getFullYear()}-${String(day.getMonth() + 1).padStart(2, "0")}-${String(day.getDate()).padStart(2, "0")}`;
+        dayLabels.push({ key, label: day.toLocaleDateString(undefined, { weekday: "short" }), count: records.filter(r => r.dateAdded === key).length });
+    }
+    const max = Math.max(1, ...dayLabels.map(day => day.count));
+    elements.chart.replaceChildren();
+    dayLabels.forEach(day => {
+        const column = document.createElement("div");
+        column.className = "chart-day";
+        const count = document.createElement("span");
+        count.className = "chart-count";
+        count.textContent = day.count;
+        const wrap = document.createElement("div");
+        wrap.className = "chart-bar-wrap";
+        const bar = document
+    })
 }
