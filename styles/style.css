@@ -436,6 +436,13 @@ h1 {
     gap: 16px;
     margin-top: 16px;
 }
+.inline-fields{
+    display: flex;
+    gap: 8px;
+}
+.inline-fields input {
+    flex: 1;
+}
 
 .panel {
     padding: 23px;
@@ -625,6 +632,20 @@ textarea {
     text-decoration: underline;
     font-weight: 700;
 }
+
+.stats-grid{
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.stats-grid {
+    gap: 10px;
+}
+
 
 .library-heading {
     align-items: end;
