@@ -91,3 +91,45 @@ let settings = loadSettings();
 let activePattern = "";
 let caseInsensitive = true;
 
+const seedRecords = [
+    ["The Beginner's Guide to Robotics", "Maya Patel", 240, "Technology", "2026-10-10", "An introduction to sensors, motors and simple robots."],
+    ["Atomic Habits", "James Clear", 320, "Personal Growth", "2026-10-09", "Small routines can create meaningful changes."],
+    ["JavaScript Notes", "Alex Morgan", 48, "Programming", "2026-10-08", "Variables, functions, arrays and DOM events."],
+    ["Introduction to AI", "Sarah Chen", 185, "Technology", "2026-10-07", "Notes on machine learning and responsible AI."],
+    ["The Design of Everyday Things", "Don Norman", 368, "Design", "2026-10-06", "A book about usable products and human-centered design."],
+    ["Database Basics", "Chris Okafor", 72, "Programming", "2026-10-05", "SQL tables, keys and simple queries."],
+    ["Study Skills Handbook", "Stella Cottrell", 280, "Study", "2026-10-04", "Planning, note-taking and revision strategies."],
+    ["Clean Code", "Robert C. Martin", 464, "Programming", "2026-10-03", "Ideas for readable and maintainable code."],
+    ["A Short History of Nearly Everything", "Bill Bryson", 544, "Science", "2026-10-02", "An accessible tour through scientific discoveries."],
+    ["Web Accessibility Notes", "Jamie Lee", 36, "Design", "2026-10-01", "Semantic HTML, keyboard support and accessible labels."]
+];
+
+function createSeedRecords() {
+    const stamp = nowISO();
+    return seedRecords.map((item, index) => ({
+        id: `book_${String(index + 1).padStart(4, "0")}`,
+        title: item[0], author: item[1], pages: item[2], tag: item[3],
+       dateAdded: item[4], notes: item[5], createdAt: stamp, updatedAt: stamp
+    }));
+}
+
+if (!Array.isArray(records)) records = null;
+if (records === null) {
+    records = createSeedRecords();
+    saveRecords(records);
+}
+select("#current-year").textContent = new Date().getFullYear();
+select("#page-target").value = settings.pageTarget;
+select("#page-unit").value = settings.pageUnit;
+fields.dateAdded.value = todayISO();
+
+function announce(message) {
+    select("#global-status").textContent = message;
+}
+
+function persist() {
+    if (!saveRecords(records)) {
+        announce("Could not save to this browser. Export a backup and check your browser storage settings.");
+        
+    }
+}
