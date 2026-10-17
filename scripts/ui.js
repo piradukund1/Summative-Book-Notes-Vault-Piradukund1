@@ -113,6 +113,36 @@ export function renderStats(records, settings, elements) {
         count.textContent = day.count;
         const wrap = document.createElement("div");
         wrap.className = "chart-bar-wrap";
-        const bar = document
-    })
+        const bar = document.createElement("div");
+        bar.className = "chart-bar";
+        bar.style.height = `${Math.max(3, day.count / max * 82)}px`;
+        wrap.append(bar);
+        const label = document.createElement("span");
+        label.className = "chart-label";
+        label.textContent = day.label;
+        column.append(count, wrap, label);
+        elements.chart.append(column);
+    });
+
+    const target = Number(settings.pageTarget) || 0;
+    const difference = target - totalPages;
+    if (target === 0) {
+        elements.targetMessage.textContent = `You have ${totalPages.toLocaleDateString()} pages. set above zero to track progress.`;
+        elements.targetMessage.classList.remove("alert");
+        elements.targetProgress.style.width = "0%";
+    } else if (difference >= 0){
+        elements.targetMessage.textContent = `${difference.toLocaleString()} pages remaining to reach your ${target.toLocaleString()}-page target.`;
+        elements.targetMessage.classList.remove("alert");
+        elements.targetProgress.style.width = `${Math.min(100, totalPages / target * 100)}%`;
+    } else {
+        elements.targetMessage.textContent = `Target exceeded by ${Math.abs(difference).toLocaleString()} pages. Great collection!`;
+        elements.targetMessage.classList.add("alert");
+        elements.targetProgress.style.width = "100%";
+    }
+    elements.targetMessage.setAttribute("aria-live", difference < 0 ? "assertive" : "polite");
+}
+
+export function showFieldError(input, errorElement, message) {
+    errorElement.textContent = message;
+    input.setAttribute("aria-live", message ? "true" : "false");
 }
