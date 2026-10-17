@@ -330,5 +330,21 @@ select("#import-file").addEventListener("change", async event => {
     }
 });
 
+select("#clear-library").addEventListener("click", () => {
+    if(!confirm("Delete every book and note? this can not be undone unless you have a backup bro.")) return;
+    records = [];
+    persist();
+    refresh();
+    select("#setings-status").textContent = "All records were deleted.";
+    announce("Library cleaned.");
+});
+
+const filePage = location.pathname.split("/").pop().replace(".html", "");
+const initialPage = new URLSearchParams(location.search).get("page") || (filePage === "index" ? "dashboard" : filePage);
+showPage(initialPage, false);
+const requestedEditId = new URLSearchParams(window.location.search).get("edit");
+if (requestedEditId && document.body.dataset.page === "add-book") startEdit(requestedEditId);
+
+refresh();
 
 
