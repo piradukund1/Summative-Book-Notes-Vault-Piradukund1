@@ -130,6 +130,141 @@ function announce(message) {
 function persist() {
     if (!saveRecords(records)) {
         announce("Could not save to this browser. Export a backup and check your browser storage settings.");
-        
+        select("#form-status").textContent = "Warning: changes may not persist in this browser.";
+    return false;
     }
+    return false;
 }
+
+function refresh() {
+    const compiled = compileRegex(activePattern, caseInsensitive);
+    select("#search-error").textContent = compiled.error;
+    const filtered = compiled.error ? [] : records.filter(record => recordMatches(record, compiled.regex));
+    const sort = select("#sort-by").value;
+    filtered.sort((a, b) => {
+        if (sort === "date-asc") return a.dateAdded.localeCompare(b.dateAdded);
+        if (sort === "date-desc") return b.dateAdded.localeCompare(a.dateAdded);
+        if (sort === "title-asc") return a.title.localeCompare(b.title);
+        if (sort === "title-desc") return b.title.localeCompare(a.title);
+        if (sort === "pages-asc") return a.pages - b.pages;
+        return b.pages - a.pages;
+    });
+    renderRecords(filtered, activePattern, caseInsensitive, tableElements, {
+        edit: startEdit,
+        delete: deleteRecord
+    });
+    renderStats(records, settings, statsElements);
+}
+
+function clearErrors() {
+    Object.keys(validators).forEach(key => showFieldError(fields[key], errors[key], ""));
+}
+
+function clearForm() {
+    form.reset();
+    fields.id.value = "";
+    fields.dateAdded.value = todayISO();
+    clearErrors();
+    select("#form-title").textContent = "Add a book or note";
+    select("#save-record").textContent = "save to vault";
+    select("#cancel-edit").hidden = true;
+    select("#form-status").textContent = "";
+}
+
+function validateForm() {
+    let valid = true;
+    Object.entries(validators).forEach(([key, validator]) => {
+        const message = validator(fields[key].value);
+        showFieldError(fields[key], message);
+        if (message) valid = false;
+    });
+    return valid;
+}
+
+function startEdit(id) {
+    if (document.body.dataset.page !== "add-book") {
+        showPage("add-book");
+    }
+    const record = records.find(item => item.id === id);
+    if (!record) return;
+    fields.id.value = record.id;
+    fields.title.value = record.title;
+    fields.author.value = record.author;
+    fields.pages.value = record.pages;
+    fields.tag.value = record.tag;
+    fields.dateAdded = record.dateAdded;
+    fields.notes.value = record.dateAdded;
+    clearErrors();
+    select("#form-title").textContent = "Edit a book or note";
+    select("#save-record").textContent = "Save changes";
+    select("#cancel-edit").hidden = false;
+    select("#form-status").textContent = `Editing “${record.title}”.`;
+    fields.title.focus();
+}
+
+function deleteRecord(id) {
+    const record = records.find(item => item.id === id);
+    if (!record) return;
+    if (!confirm(`Delete “${record.title}” from your vault? This cannot be undone.`)) return;
+    records = records.filter(item => item.id !== id);
+    persist();
+    refresh();
+    announce(`${record.title} deleted.`);
+}
+
+form.addEventListener("submit", event => {
+    event.preventDefault();
+    if (!validateForm()) {
+        select("#form-status").textContent = "Please correct the highlighted fields.";
+        const firstInvalid = form.querySelector('[aria-invalid="true"]');
+        if (firstInvalid) firstInvalid.focus;
+        return;
+    }
+
+    const stamp = nowISO();
+    const oldRecord = records.find(item => item.id === fields.id.value);
+    const record = {
+        id: oldRecord ? oldRecord.id : makeId(records),
+        title: fields.title.value,
+        author: fields.author.value,
+        pages: Number(fields.pages.value),
+        tag: fields.tag.value,
+        dateAdded: fields.dateAdded.value,
+        notes: fields.notes.value.trim(),
+        createdAt: oldRecord ? oldRecord.createdAt : stamp,
+        updatedAt: stamp
+    };
+
+    if (oldRecord) records = records.map(item => item.id === oldRecord.id ? record : item);
+    else records.push(record);
+
+    persist();
+    clearForm();
+    refresh();
+    select("#form-status").textContent = oldRecord ? "Book update successfully." : "Book saved to your vault.";
+    announce(oldRecord ? "Book updated." : "Book added.");
+});
+
+select("#clear-form").addEventListener("click", clearForm);
+select("#cancel-edit").addEventListener("click", clearForm);
+
+Object.entries(validators).forEach(([key, validator]) => {
+    fields[key].addEventListener("input", () => {
+        showFieldError(fields[key], errors[key], validator(fields[key].value));
+    });
+    fields[key].addEventListener("blur", () =>{
+        showFieldError(fields[key], errors[key], validator(fields[key].value));
+    });
+});
+
+select("#search-pattern").addEventListener("input", event => {
+    activePattern = event.target.value;
+    refresh();
+});
+select("#case-insensitive").addEventListener("change", event =>{
+    caseInsensitive = event.target.checked;
+    refresh();
+});
+select("#sort-by").addEventListener("change", refresh);
+
+
