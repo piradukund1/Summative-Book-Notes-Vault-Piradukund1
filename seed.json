@@ -1,0 +1,24 @@
+[
+    {
+        "id": "Book_001",
+        "title": "The Beginner's Guide to Robotics",
+        "author": "Maya patel",
+        "pages": 240,
+        "tag": "Technology",
+        "dateAdded": "2026-10-10",
+        "notes": "An introduction to sensors, motors and simple robots.",
+        "createdAt": "2026-10-10T09:00:00.000Z",
+        "updatedAt": "2026-10-10T09:00:00.000Z"
+    },
+    {
+        "id": "book_0002",
+        "title": "Atomic Habits",
+        "author": "James Clear",
+        "pages": 320,
+        "tag": "Personal Growth",
+        "dateAdded": "2026-10-09",
+        "notes": "Small routines can create meaningful changes.",
+        "createdAt": "2026-10-09T09:00:00.000Z",
+        "updatedAt": "2026-10-09T09:00:00.000Z"
+    }
+]

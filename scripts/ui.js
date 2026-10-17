@@ -1,5 +1,5 @@
 // DOM rendering functions
-import { appendHighlightedText } from "./search";
+import { appendHighlightedText } from "./search.js";
 
 export function renderRecords(records, pattern, ignoreCase, elements, handlers) {
     const body = elements.body;
@@ -14,7 +14,7 @@ export function renderRecords(records, pattern, ignoreCase, elements, handlers) 
         appendHighlightedText(title, record.title, pattern, ignoreCase);
         const author = document.createElement("div");
         author.className = "record-author";
-        appendHighlightedText(author. record.author, pattern, ignoreCase);
+        appendHighlightedText(author, record.author, pattern, ignoreCase);
         titleCell.append(title, author);
         if (record.notes) {
             const notes = document.createElement("div");
@@ -76,7 +76,7 @@ export function renderStats(records, settings, elements) {
     }
     elements.totalPages.textContent = Number(shownTotal.toFixed(2)).toLocaleString();
     elements.totalPages.nextElementSibling.textContent = `Total ${unitName} across your vault`;
-    elements.uniPreview.textContent = `Display: ${unitName}. Raw page target always uses pages.`;
+    elements.unitPreview.textContent = `Display: ${unitName}. Raw page target always uses pages.`;
 
     const tagCounts = {};
     records.forEach(record => {

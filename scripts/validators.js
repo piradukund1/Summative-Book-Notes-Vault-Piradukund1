@@ -16,13 +16,13 @@ export function validateAuthor(value) {
 
 export function validatePages(value) {
     const pattern = /^(0|[1-9]\d*)$/;
-    if (!value === "") return "Enter the number of pages bro wtfff!!."
+    if (value === "") return "Enter the number of pages bro wtfff!!."
     if (!pattern.test(value)) return "Pages must be a whole number with no extra spaces or decimals.";
     if (Number(value) > 1000000) return "pages must be 1,000,000 or fewer broo..";
     return "";
 }
 
-export function validateTage(value) {
+export function validateTag(value) {
     const pattern = /^[A-Za-z]+(?:[ -][A-Za-z]+)*$/;
     if (!value) return "Enter a tag using letter, spaces or hyphens.";
     if (!pattern.test(value)) return "Use letters separated by single space or hyphens only.";
@@ -31,7 +31,7 @@ export function validateTage(value) {
 export function validateDate(value) {
     const pattern =  /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
     if (!pattern.test(value)) return "Choose a valid date in YYYY-MM-DD format.";
-    const [year, month, day] = value.split("_").map(Number);
+    const [year, month, day] = value.split("-").map(Number);
     const date = new Date(year, month -1, day);
     if (date.getFullYear() !== year || date.getMonth() !== month - 1 || date.getDate() !== day) {
         return "that date doesnt exist bradaman.";
@@ -45,7 +45,7 @@ export function validateRecord(record) {
     if (validateTitle(String(record.title ?? ""))) return false;
     if (validateAuthor(String(record.author ?? ""))) return false;
     if (validatePages(String(record.pages ?? ""))) return false;
-    if (validateTage(String(record.tag ?? ""))) return false;
+    if (validateTag(String(record.tag ?? ""))) return false;
     if (validateDate(String(record.dateAdded ?? ""))) return false;
     if (typeof record.notes !== "string") return false;
     if (typeof record.createdAt !== "string" || Number.isNaN(Date.parse(record.createdAt))) return false;
@@ -53,7 +53,7 @@ export function validateRecord(record) {
     return true;
 }
 
-export function validateImport(date) {
+export function validateImport(data) {
     if (!Array.isArray(data)) return { valid: false, message: "The JSON file must contain an array of records." };
     const ids = new Set();
     for (const record of data) {

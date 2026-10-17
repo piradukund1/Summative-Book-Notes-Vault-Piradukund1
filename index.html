@@ -11,7 +11,7 @@
 </head>
 
 <body data-page="dashboard">
-    <a href="skip-link" href="#main">Skip to main content</a>
+    <a class="skip-link" href="#main">Skip to main content</a>
 
     <aside class="sidebar" aria-level="Sidebar">
         <a href="index.html" class="brand" aria-label="Book and Notes Vault home">
@@ -135,10 +135,15 @@
                             <small class="field-error" id="author-error"></small>
                         </div>
                         <div class="field">
+                            <label for="pages">Numbers of pages</label>
+                            <input type="number" name="pages" min="0" max="100000" step="1" id="pages" placeholder="e.g. 240" required aria-describedby="pages-error">
+                            <small class="field-error" id="pages-error"></small>
+                        </div>
+                        <div class="field">
                             <label for="tag">Tag</label>
                             <input type="text" id="tag" name="tag" maxlength="40" placeholder="e.g Techology" required
-                                aria-describedby="pages-error">
-                            <small class="field-error" id="date-error"></small>
+                                aria-describedby="tag-error">
+                            <small class="field-error" id="tag-error"></small>
                         </div>
                         <div class="field">
                             <label for="date-added">Date added</label>
