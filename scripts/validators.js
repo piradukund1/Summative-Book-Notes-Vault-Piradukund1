@@ -45,4 +45,21 @@ export function validateRecord(record) {
     if (validateTitle(String(record.title ?? ""))) return false;
     if (validateAuthor(String(record.author ?? ""))) return false;
     if (validatePages(String(record.pages ?? ""))) return false;
+    if (validateTage(String(record.tag ?? ""))) return false;
+    if (validateDate(String(record.dateAdded ?? ""))) return false;
+    if (typeof record.notes !== "string") return false;
+    if (typeof record.createdAt !== "string" || Number.isNaN(Date.parse(record.createdAt))) return false;
+    if (typeof record.updatedAt !== "string" || Number.isNaN(Date.parse(record.updatedAt))) return false;
+    return true;
+}
+
+export function validateImport(date) {
+    if (!Array.isArray(data)) return { valid: false, message: "The JSON file must contain an array of records." };
+    const ids = new Set();
+    for (const record of data) {
+        if (!validateRecord(record)) return { valid: false,message: "One or more records have missing or invalid fields. Nothing was imported." };
+        if (ids.has(record.id)) return { valid: false, message: "Duplicate record IDs were found. Nothing was imported." };
+        ids.add(record.id);
+    }
+    return { valid: true, message: "Import data is valid," };
 }
