@@ -267,4 +267,68 @@ select("#case-insensitive").addEventListener("change", event =>{
 });
 select("#sort-by").addEventListener("change", refresh);
 
+select("#target-form").addEventListener("submit", event =>{
+    event.preventDefault();
+    const value = Number(select("#page-target").value);
+    if (!Number.isFinite(value) || value < 0 || !Number.isInteger(value)) {
+        select("#target-message").textContent = "Enter a whole number of zero or more.";
+        select("#target-message").classList.add("alert");
+        return;
+    }
+    settings.pageTarget = value;
+    saveSettings(settings);
+    refresh();
+    announce("Page target saved.");
+});
+
+select("#page-unit").addEventListener("change", event => {
+    settings.pageUnit = event.target.value;
+    saveSettings(settings);
+    refresh();
+});
+
+function downloadJSON() {
+    const blob = new Blob([JSON.stringify(records, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "book-notes-vault-backup.json";
+    document.body.append(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+    announce("JSON backup exported..");
+}
+select("#export-json").addEventListener("click", downloadJSON);
+select("#export-settings").addEventListener("click", downloadJSON);
+
+select("#import-trigger").addEventListener("click", () => select("#import-file").click());
+select("#import-file").addEventListener("change", async event => {
+    const file = event.target.files[0];
+    if (!file) return;
+    try {
+        const content = await file.text();
+        const data = JSON.parse(content);
+        const result = validateImport(data);
+        if (!result.valid) {
+            select("#settings-status").textContent = result.message;
+            select("#search-error").textContent = "";
+            announce("Import failed. Current library was not changed.");
+            return;
+        }
+        if (!confirm(`Import ${data.length} records and replace your current library? Export a backup first if needed.`)) return;
+        records = data;
+        persist();
+        refresh();
+        select("#settings-status").textContent = `Successfully imported ${data.length} records.`;
+        announce("Import complete.");
+    } catch {
+        select("#settings-status").textContent = "Could not read this JSON file. Check that it is valid JSON.";
+        announce("import feiled. current library was not changed bro.");
+    } finally {
+        event.target.value = "";
+    }
+});
+
+
 
