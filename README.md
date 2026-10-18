@@ -8,7 +8,7 @@ Book & Notes Vault is a web application that helps users organize books, manage 
 
 ## Links
  - Repository: https://github.com/piradukund1/Summative-Book-Notes-Vault-Piradukund1
- - GitHub Pages (live link): 
+ - GitHub Pages (live link): https://piradukund1.github.io/Summative-Book-Notes-Vault-Piradukund1/
  - Demo Video: https://drive.google.com/file/d/1zAn-rt1jbHSpfQ9oAZLaBgEVMcTMO10Q/view?pli=1
 
 ## 2. Features
