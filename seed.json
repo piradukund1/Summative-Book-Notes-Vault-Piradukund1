@@ -1,35 +1,123 @@
 [
-    {
-        "id": "Book_001",
-        "title": "The Beginner's Guide to Robotics",
-        "author": "Maya patel",
-        "pages": 240,
-        "tag": "Technology",
-        "dateAdded": "2026-10-10",
-        "notes": "An introduction to sensors, motors and simple robots.",
-        "createdAt": "2026-10-10T09:00:00.000Z",
-        "updatedAt": "2026-10-10T09:00:00.000Z"
-    },
-    {
-        "id": "book_0002",
-        "title": "Atomic Habits",
-        "author": "James Clear",
-        "pages": 320,
-        "tag": "Personal Growth",
-        "dateAdded": "2026-10-09",
-        "notes": "Small routines can create meaningful changes.",
-        "createdAt": "2026-10-09T09:00:00.000Z",
-        "updatedAt": "2026-10-09T09:00:00.000Z"
-    },
-    {
-        "id":"book_0003",
-        "title": "javascript notes",
-        "author": "alex",
-        "pages": 40,
-        "tag":"Technology",
-        "dateAdded":"2026-10-09",
-        "notes":"An introduction to sensors, motors and simple robots.",
-        "createdAt":"2026-10-09T09:00:00.000Z",
-        "updatedAt":"2026-10-09T09:00:00.000Z"
-    }
+  {
+    "id": "book_0001",
+    "title": "The Beginner's Guide to Robotics",
+    "author": "Maya Patel",
+    "pages": 240,
+    "tag": "Technology",
+    "dateAdded": "2026-10-10",
+    "notes": "An introduction to sensors, motors and simple robots.",
+    "createdAt": "2026-10-10T09:00:00.000Z",
+    "updatedAt": "2026-10-10T09:00:00.000Z"
+  },
+  {
+    "id": "book_0002",
+    "title": "Atomic Habits",
+    "author": "James Clear",
+    "pages": 320,
+    "tag": "Personal Growth",
+    "dateAdded": "2026-10-09",
+    "notes": "Small routines can create meaningful changes.",
+    "createdAt": "2026-10-09T09:00:00.000Z",
+    "updatedAt": "2026-10-09T09:00:00.000Z"
+  },
+  {
+    "id": "book_0003",
+    "title": "JavaScript Notes",
+    "author": "Alex Morgan",
+    "pages": 48,
+    "tag": "Programming",
+    "dateAdded": "2026-10-08",
+    "notes": "Variables, functions, arrays and DOM events.",
+    "createdAt": "2026-10-08T09:00:00.000Z",
+    "updatedAt": "2026-10-08T09:00:00.000Z"
+  },
+  {
+    "id": "book_0004",
+    "title": "Introduction to AI",
+    "author": "Sarah Chen",
+    "pages": 185,
+    "tag": "Technology",
+    "dateAdded": "2026-10-07",
+    "notes": "Notes on machine learning and responsible AI.",
+    "createdAt": "2026-10-07T09:00:00.000Z",
+    "updatedAt": "2026-10-07T09:00:00.000Z"
+  },
+  {
+    "id": "book_0005",
+    "title": "The Design of Everyday Things",
+    "author": "Don Norman",
+    "pages": 368,
+    "tag": "Design",
+    "dateAdded": "2026-10-06",
+    "notes": "A book about usable products and human-centered design.",
+    "createdAt": "2026-10-06T09:00:00.000Z",
+    "updatedAt": "2026-10-06T09:00:00.000Z"
+  },
+  {
+    "id": "book_0006",
+    "title": "Database Basics",
+    "author": "Chris Okafor",
+    "pages": 72,
+    "tag": "Programming",
+    "dateAdded": "2026-10-05",
+    "notes": "SQL tables, keys and simple queries.",
+    "createdAt": "2026-10-05T09:00:00.000Z",
+    "updatedAt": "2026-10-05T09:00:00.000Z"
+  },
+  {
+    "id": "book_0007",
+    "title": "Study Skills Handbook",
+    "author": "Stella Cottrell",
+    "pages": 280,
+    "tag": "Study",
+    "dateAdded": "2026-10-04",
+    "notes": "Planning, note-taking and revision strategies.",
+    "createdAt": "2026-10-04T09:00:00.000Z",
+    "updatedAt": "2026-10-04T09:00:00.000Z"
+  },
+  {
+    "id": "book_0008",
+    "title": "Clean Code",
+    "author": "Robert C. Martin",
+    "pages": 464,
+    "tag": "Programming",
+    "dateAdded": "2026-10-03",
+    "notes": "Ideas for readable and maintainable code.",
+    "createdAt": "2026-10-03T09:00:00.000Z",
+    "updatedAt": "2026-10-03T09:00:00.000Z"
+  },
+  {
+    "id": "book_0009",
+    "title": "A Short History of Nearly Everything",
+    "author": "Bill Bryson",
+    "pages": 544,
+    "tag": "Science",
+    "dateAdded": "2026-10-02",
+    "notes": "An accessible tour through scientific discoveries.",
+    "createdAt": "2026-10-02T09:00:00.000Z",
+    "updatedAt": "2026-10-02T09:00:00.000Z"
+  },
+  {
+    "id": "book_0010",
+    "title": "Web Accessibility Notes",
+    "author": "Jamie Lee",
+    "pages": 36,
+    "tag": "Design",
+    "dateAdded": "2026-10-01",
+    "notes": "Semantic HTML, keyboard support and accessible labels.",
+    "createdAt": "2026-10-01T09:00:00.000Z",
+    "updatedAt": "2026-10-01T09:00:00.000Z"
+  },
+  {
+    "id": "book_0011",
+    "title": "Tiny Data Notes",
+    "author": "Ari Okello",
+    "pages": 0,
+    "tag": "Study",
+    "dateAdded": "2025-09-29",
+    "notes": "Edge case: zero pages for a digital note.",
+    "createdAt": "2025-09-29T09:00:00.000Z",
+    "updatedAt": "2025-09-29T09:00:00.000Z"
+  }
 ]
