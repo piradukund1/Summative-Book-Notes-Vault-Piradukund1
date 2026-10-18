@@ -6,6 +6,11 @@
 
 Book & Notes Vault is a web application that helps users organize books, manage notes, search records, and track reading progress.
 
+## Links
+ - Repository: https://github.com/piradukund1/Summative-Book-Notes-Vault-Piradukund1
+ - GitHub Pages (live link): 
+ - Demo Video: https://drive.google.com/file/d/1zAn-rt1jbHSpfQ9oAZLaBgEVMcTMO10Q/view?pli=1
+
 ## 2. Features
 
 - Add, view, edit, and delete book records.
@@ -62,3 +67,42 @@ Book & Notes Vault is a web application that helps users organize books, manage 
 3. Run the available tests and check the results.
 4. Test book management, regex search, import/export, and keyboard navigation.
 
+## 8. Design
+
+The app uses a clean dashboard design with a sidebar for navigation. It focuses on making book management simple and easy.
+
+The layout is designed for:
+
+1.Mobile screens
+
+2.Tablet screens
+
+3.Desktop screens
+
+## 9. Project files
+
+index.html contains the main page.
+
+styles/style.css contains the page styles.
+
+scripts/app.js handles user actions.
+
+scripts/ui.js displays records and statistics.
+
+scripts/state.js handles application state.
+
+scripts/storage.js saves and loads data.
+
+scripts/search.js handles regex search.
+
+scripts/validators.js validates user input.
+
+tests.html runs automated tests, if included.
+
+## Author
+
+Created by Philbert.
+
+## About
+
+Book & Notes Vault is a project focused on making it easier to organize books, manage notes, and monitor reading progress.
