@@ -548,7 +548,7 @@ textarea:hover {
 }
 
 .status-message {
-    color: var(--muted);
+    color: rgb(168, 104, 30);
     font-size: .84rem;
     margin: 12px 0 0;
     min-height: 1.3;
@@ -1078,7 +1078,7 @@ body[data-page="dashboard"] .section-block:not(#dashboard),
 body[data-page="library"] .hero,
 body[data-page="library"] .section-block:not(#records),
 body[data-page="add-book"] .hero,
-body[data-page="add-book"] .section-block:not(#add-book),
+body[data-page="add-book"] .section-block:not(#add-record),
 body[data-page="settings"] .hero,
 body[data-page="settings"] .section-block:not(#settings),
 body[data-page="about"] .hero,
@@ -1088,7 +1088,7 @@ body[data-page="about"] .section-block:not(#about) {
 
 body[data-page="dashboard"] .sidebar nav a[href="index.html"],
 body[data-page="library"] .sidebar nav a a[href="library.html"],
-body[data-page="add-book"] .sidebar nav a a[href="add-book.html"],
+body[data-page="add-book"] .sidebar nav a[href="add-book.html"],
 body[data-page="settings"] .sidebar nav a a[href="settigs.html"],
 body[data-page="about"] .sidebar nav a a[href="about.html"] {
     background: var(--green-soft);

@@ -17,7 +17,7 @@ function showPage(page, updateUrl = true) {
     if (!pageSections[page]) page = "dashboard";
     document.body.dataset.page = page;
     document.querySelectorAll(".page-shell > .section-block").forEach(selection => {
-        select.hidden = selection.id !== pageSections[page]; 
+        selection.hidden = selection.id !== pageSections[page];
     });
     const hero = select(".hero");
     if (hero) hero.hidden = page !== "dashboard";
@@ -26,7 +26,7 @@ function showPage(page, updateUrl = true) {
         if (target === page) link.setAttribute("aria-current", "page");
         else link.removeAttribute("aria-current");
     });
-    if (updateUrl) history.pushState({ page }, "", page === "dashboad" ? "index.html" : `${page === "library" ? "library" : page}.html`);
+    if (updateUrl) history.pushState({ page }, "", page === "dashboard" ? "index.html" : `${page === "library" ? "library" : page}.html`);
     window.scrollTo(0, 0);
 }
 
@@ -109,7 +109,7 @@ function createSeedRecords() {
     return seedRecords.map((item, index) => ({
         id: `book_${String(index + 1).padStart(4, "0")}`,
         title: item[0], author: item[1], pages: item[2], tag: item[3],
-       dateAdded: item[4], notes: item[5], createdAt: stamp, updatedAt: stamp
+        dateAdded: item[4], notes: item[5], createdAt: stamp, updatedAt: stamp
     }));
 }
 
@@ -131,9 +131,9 @@ function persist() {
     if (!saveRecords(records)) {
         announce("Could not save to this browser. Export a backup and check your browser storage settings.");
         select("#form-status").textContent = "Warning: changes may not persist in this browser.";
-    return false;
+        return false;
     }
-    return false;
+    return true;
 }
 
 function refresh() {
@@ -175,7 +175,7 @@ function validateForm() {
     let valid = true;
     Object.entries(validators).forEach(([key, validator]) => {
         const message = validator(fields[key].value);
-        showFieldError(fields[key], message);
+        showFieldError(fields[key], errors[key], message);
         if (message) valid = false;
     });
     return valid;
@@ -192,8 +192,8 @@ function startEdit(id) {
     fields.author.value = record.author;
     fields.pages.value = record.pages;
     fields.tag.value = record.tag;
-    fields.dateAdded = record.dateAdded;
-    fields.notes.value = record.dateAdded;
+    fields.dateAdded.value = record.dateAdded;
+    fields.notes.value = record.notes || "";
     clearErrors();
     select("#form-title").textContent = "Edit a book or note";
     select("#save-record").textContent = "Save changes";
@@ -217,7 +217,7 @@ form.addEventListener("submit", event => {
     if (!validateForm()) {
         select("#form-status").textContent = "Please correct the highlighted fields.";
         const firstInvalid = form.querySelector('[aria-invalid="true"]');
-        if (firstInvalid) firstInvalid.focus;
+        if (firstInvalid) firstInvalid.focus();
         return;
     }
 
@@ -252,7 +252,7 @@ Object.entries(validators).forEach(([key, validator]) => {
     fields[key].addEventListener("input", () => {
         showFieldError(fields[key], errors[key], validator(fields[key].value));
     });
-    fields[key].addEventListener("blur", () =>{
+    fields[key].addEventListener("blur", () => {
         showFieldError(fields[key], errors[key], validator(fields[key].value));
     });
 });
@@ -261,13 +261,13 @@ select("#search-pattern").addEventListener("input", event => {
     activePattern = event.target.value;
     refresh();
 });
-select("#case-insensitive").addEventListener("change", event =>{
+select("#case-insensitive").addEventListener("change", event => {
     caseInsensitive = event.target.checked;
     refresh();
 });
 select("#sort-by").addEventListener("change", refresh);
 
-select("#target-form").addEventListener("submit", event =>{
+select("#target-form").addEventListener("submit", event => {
     event.preventDefault();
     const value = Number(select("#page-target").value);
     if (!Number.isFinite(value) || value < 0 || !Number.isInteger(value)) {
@@ -331,11 +331,11 @@ select("#import-file").addEventListener("change", async event => {
 });
 
 select("#clear-library").addEventListener("click", () => {
-    if(!confirm("Delete every book and note? this can not be undone unless you have a backup bro.")) return;
+    if (!confirm("Delete every book and note? this can not be undone unless you have a backup bro.")) return;
     records = [];
     persist();
     refresh();
-    select("#setings-status").textContent = "All records were deleted.";
+    select("#settings-status").textContent = "All records were deleted.";
     announce("Library cleaned.");
 });
 
