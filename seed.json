@@ -20,5 +20,16 @@
         "notes": "Small routines can create meaningful changes.",
         "createdAt": "2026-10-09T09:00:00.000Z",
         "updatedAt": "2026-10-09T09:00:00.000Z"
+    },
+    {
+        "id":"book_0003",
+        "title": "javascript notes",
+        "author": "alex",
+        "pages": 40,
+        "tag":"Technology",
+        "dateAdded":"2026-10-09",
+        "notes":"An introduction to sensors, motors and simple robots.",
+        "createdAt":"2026-10-09T09:00:00.000Z",
+        "updatedAt":"2026-10-09T09:00:00.000Z"
     }
 ]
